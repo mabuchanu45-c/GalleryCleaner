@@ -25,10 +25,13 @@ jobs:
           pip install buildozer cython==0.29.33
           pip install kivy opencv-python pillow imagehash numpy
 
+      - name: Accept Android licenses
+        run: |
+          yes | sdkmanager --licenses || true
+
       - name: Build APK
         run: |
           buildozer android debug
-
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
